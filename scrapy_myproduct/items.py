@@ -8,7 +8,14 @@
 import scrapy
 
 
-class ScrapyMyproductItem(scrapy.Item):
+class RakutenItem(scrapy.Item):
     # define the fields for your item here like:
-    # name = scrapy.Field()
+    title = scrapy.Field()
+    keyword = scrapy.Field()
+    item_url = scrapy.Field()
+    page_num = scrapy.Field()
+    page_url = scrapy.Field()
+    seller = scrapy.Field()
+    search_time = scrapy.Field()
+
     pass

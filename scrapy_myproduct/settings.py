@@ -9,7 +9,7 @@
 #     https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 
-BOT_NAME = 'scrapy_myproduct'
+BOT_NAME = 'myproductManager'
 
 SPIDER_MODULES = ['scrapy_myproduct.spiders']
 NEWSPIDER_MODULE = 'scrapy_myproduct.spiders'
@@ -19,6 +19,7 @@ NEWSPIDER_MODULE = 'scrapy_myproduct.spiders'
 #USER_AGENT = 'scrapy_myproduct (+http://www.yourdomain.com)'
 
 # Obey robots.txt rules
+#robots.txtがある場合は、それに従うかどうか
 ROBOTSTXT_OBEY = True
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
@@ -27,7 +28,18 @@ ROBOTSTXT_OBEY = True
 # Configure a delay for requests for the same website (default: 0)
 # See https://docs.scrapy.org/en/latest/topics/settings.html#download-delay
 # See also autothrottle settings and docs
-#DOWNLOAD_DELAY = 3
+#1つのページをダウンロードしてから、次のページをダウンロードすするまでの間隔（単位：秒）
+DOWNLOAD_DELAY = 2
+
+#日本語文字化けのためにEncode設定、そして出力形式を指定します。（csvの代わりにjsonも可能です）
+FEED_EXPORTERS = {
+    'csv': 'scrapy_myproduct.exporters.CsvCustomSeperator'
+}
+
+#再帰的に探査を行う深さ（0は無制限）
+# rakutenは商品ページが150まである
+DEPTH_LIMIT = 50
+
 # The download delay setting will honor only one of:
 #CONCURRENT_REQUESTS_PER_DOMAIN = 16
 #CONCURRENT_REQUESTS_PER_IP = 16
@@ -39,10 +51,10 @@ ROBOTSTXT_OBEY = True
 #TELNETCONSOLE_ENABLED = False
 
 # Override the default request headers:
-#DEFAULT_REQUEST_HEADERS = {
-#   'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-#   'Accept-Language': 'en',
-#}
+DEFAULT_REQUEST_HEADERS = {
+  'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+  'Accept-Language': 'ja',
+}
 
 # Enable or disable spider middlewares
 # See https://docs.scrapy.org/en/latest/topics/spider-middleware.html
