@@ -1,7 +1,7 @@
 # scrapy_myproduct
 searching item with page
 
-## Windowsへscrapy導入
+## Windowsにscrapy導入
 
 ### 環境
 Windows 10 Pro 64bit、Anaconda Navigator 1.9.7
